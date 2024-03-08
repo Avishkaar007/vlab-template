@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/quiz.css">
+    <title>Quiz</title>
+</head>
+
+<body>
+    <main>
+        <div class="containerNew">
+            <header>
+
+                <div class="timer">
+                    <p>
+                        Time:
+                        <span id="timer">
+                            0
+                        </span>
+                    </p>
+                </div>
+            </header>
+
+            <main class="quiz">
+                <div id="quiz-start">
+                    <div class="landing" id="start-screen">
+                        <h1 id="top">
+                            Quiz on Topic
+                        </h1>
+                        <p>
+                            Try to answer these simple questions.
+                        </p>
+                        <button id="start" onclick="quizStart()">
+                            Start Quiz
+                        </button>
+                    </div>
+                </div>
+
+                <div class="hide" id="questions">
+                    <h2 id="question-words"></h2>
+                    <div class="options" id="options">
+                    </div>
+                </div>
+
+                <div class="hide" id="quiz-end">
+                    <h2>All Done!</h2>
+                    <p>Your final score is:
+                        <span id="score-final">
+                        </span>
+                    </p>
+                </div>
+
+                <div id="feedback" class="feedback hide">
+                </div>
+            </main>
+        </div>
+    </main>
+    <script>
+        // script.js
+
+        let questions = [
+            {
+                prompt: `Inside which HTML 
+            element do we put 
+            the JavaScript?`,
+                options: [
+                    "<javascript>",
+                    "<js>",
+                    "<script>",
+                    "<scripting>",
+                ],
+                answer: "<script>",
+            },
+
+            {
+                prompt: `How do you call a
+            function named 
+            myFunction?`,
+                options: [
+                    "call myFunction()",
+                    "myFunction()",
+                    "call function myFunction",
+                    "Call.myFunction",
+                ],
+                answer: "myFunction()",
+            },
+
+            {
+                prompt: `How does a for loop
+            start?`,
+                options: [
+                    "for (i = 0; i <= 5; i++)",
+                    "for (i = 0; i <= 5)",
+                    "for i = 1 to 5",
+                    " for (i <= 5; i++)",
+                ],
+                answer: "for (i = 0; i <= 5; i++)",
+            },
+
+            {
+                prompt: `In JavaScript, which 
+            of the following is 
+            a logical operator?`,
+                options: ["|", "&&", "%", "/"],
+                answer: "&&",
+            },
+
+            {
+                prompt: `A named element in a 
+            JavaScript program that
+            is used to store and 
+            retrieve data is a _____.`,
+                options: [
+                    "method",
+                    "assignment operator",
+                    "letiable",
+                    "string",
+                ],
+                answer: "letiable",
+            },
+        ];
+
+        // Get Dom Elements
+
+        let questionsEl =
+            document.querySelector(
+                "#questions"
+            );
+        let timerEl =
+            document.querySelector("#timer");
+        let choicesEl =
+            document.querySelector("#options");
+        let submitBtn = document.querySelector(
+            "#submit-score"
+        );
+        let startBtn =
+            document.querySelector("#start");
+        let nameEl =
+            document.querySelector("#name");
+        let feedbackEl = document.querySelector(
+            "#feedback"
+        );
+        let reStartBtn =
+            document.querySelector("#restart");
+
+        // Quiz's initial state
+        let currentQuestionIndex = 0;
+        let time = questions.length * 15;
+        let timerId;
+
+        // Start quiz and hide frontpage
+
+        function quizStart() {
+            timerId = setInterval(
+                clockTick,
+                1000
+            );
+            timerEl.textContent = time;
+            let landingScreenEl =
+                document.getElementById(
+                    "start-screen"
+                );
+            landingScreenEl.setAttribute(
+                "class",
+                "hide"
+            );
+            questionsEl.removeAttribute(
+                "class"
+            );
+            getQuestion();
+        }
+
+        // Loop through array of questions and
+        // Answers and create list with buttons
+        function getQuestion() {
+            let currentQuestion =
+                questions[currentQuestionIndex];
+            let promptEl =
+                document.getElementById(
+                    "question-words"
+                );
+            promptEl.textContent =
+                currentQuestion.prompt;
+            choicesEl.innerHTML = "";
+            currentQuestion.options.forEach(
+                function (choice, i) {
+                    let choiceBtn =
+                        document.createElement(
+                            "button"
+                        );
+                    choiceBtn.setAttribute(
+                        "value",
+                        choice
+                    );
+                    choiceBtn.textContent =
+                        i + 1 + ". " + choice;
+                    choiceBtn.onclick =
+                        questionClick;
+                    choicesEl.appendChild(
+                        choiceBtn
+                    );
+                }
+            );
+        }
+
+        // Check for right answers and deduct
+        // Time for wrong answer, go to next question
+
+        function questionClick() {
+            if (
+                this.value !==
+                questions[currentQuestionIndex]
+                    .answer
+            ) {
+                time -= 10;
+                if (time < 0) {
+                    time = 0;
+                }
+                timerEl.textContent = time;
+                feedbackEl.textContent = `Wrong! The correct answer was 
+    ${questions[currentQuestionIndex].answer}.`;
+                feedbackEl.style.color = "red";
+            } else {
+                feedbackEl.textContent =
+                    "Correct!";
+                feedbackEl.style.color =
+                    "green";
+            }
+            feedbackEl.setAttribute(
+                "class",
+                "feedback"
+            );
+            setTimeout(function () {
+                feedbackEl.setAttribute(
+                    "class",
+                    "feedback hide"
+                );
+            }, 2000);
+            currentQuestionIndex++;
+            if (
+                currentQuestionIndex ===
+                questions.length
+            ) {
+                quizEnd();
+            } else {
+                getQuestion();
+            }
+        }
+
+        // End quiz by hiding questions,
+        // Stop timer and show final score
+
+        function quizEnd() {
+            clearInterval(timerId);
+            let endScreenEl =
+                document.getElementById(
+                    "quiz-end"
+                );
+            endScreenEl.removeAttribute(
+                "class"
+            );
+            let finalScoreEl =
+                document.getElementById(
+                    "score-final"
+                );
+            finalScoreEl.textContent = time;
+            questionsEl.setAttribute(
+                "class",
+                "hide"
+            );
+        }
+
+        // End quiz if timer reaches 0
+
+        function clockTick() {
+            time--;
+            timerEl.textContent = time;
+            if (time <= 0) {
+                quizEnd();
+            }
+        }
+
+        // Save score in local storage
+        // Along with users' name
+
+       
+        // Save users' score after pressing enter
+
+        function checkForEnter(event) {
+            if (event.key === "Enter") {
+                saveHighscore();
+                alert(
+                    "Your Score has been Submitted"
+                );
+            }
+        }
+        nameEl.onkeyup = checkForEnter;
+
+        // Save users' score after clicking submit
+        
+        // Start quiz after clicking start quiz
+
+        startBtn.onclick = quizStart();
+
+    </script>
+</body>
+
+</html>

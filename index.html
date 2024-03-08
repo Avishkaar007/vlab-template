@@ -1,7 +1,6 @@
 <html lang="en">
 
 <head>
-    <script src="https://cdn.jsdelivr.net/gh/CDNSFree2/PrismJS@latest/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
@@ -9,18 +8,15 @@
     </title>
     <link rel="stylesheet" href="./vlab.css">
     <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CDNSFree2/PrismJS@latest/prism.min.css">
 </head>
 
 <body>
     <header>
-        <button id="collapsible">
-            <svg xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                <path
-                    d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm88 200H296c13.3 0 24 10.7 24 24s-10.7 24-24 24H152c-13.3 0-24-10.7-24-24s10.7-24 24-24z" />
-            </svg>
-        </button>
+        <svg id="collapse" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path
+                d="M16 132h416c8.8 0 16-7.2 16-16V76c0-8.8-7.2-16-16-16H16C7.2 60 0 67.2 0 76v40c0 8.8 7.2 16 16 16zm0 160h416c8.8 0 16-7.2 16-16v-40c0-8.8-7.2-16-16-16H16c-8.8 0-16 7.2-16 16v40c0 8.8 7.2 16 16 16zm0 160h416c8.8 0 16-7.2 16-16v-40c0-8.8-7.2-16-16-16H16c-8.8 0-16 7.2-16 16v40c0 8.8 7.2 16 16 16z" />
+        </svg>
+
         <div>
             <img class="logo" src="./images/logo.png">
             <h1>V-Lab @ ANDC</h1>
@@ -99,56 +95,56 @@
                     <p>References</p>
                 </div>
             </nav>
-            <nav id="navbar-m">
-                <div class="boxq" onclick="show('aim')">
-                    <a class="internal_link" href="#aim">
+            <nav id="navbar-m" class="navbar-m">
+                <div class="boxq navbar-item" onclick="show('aim')">
+                    <a class="internal_link navbar-link" href="#aim">
                         <p>Aim</p>
                     </a>
                 </div>
-                <div class="boxq" onclick="show('theory')">
-                    <a class="internal_link" href="#theory">
+                <div class="boxq navbar-item" onclick="show('theory')">
+                    <a class="internal_link navbar-link" href="#theory">
                         <p>Theory</p>
                     </a>
                 </div>
-                <div class="boxq" onclick="show('procedure')">
-                    <a class="internal_link" href="#procedure">
+                <div class="boxq navbar-item" onclick="show('procedure')">
+                    <a class="internal_link navbar-link" href="#procedure">
                         <p>Procedure</p>
                     </a>
                 </div>
-                <div class="boxq" onclick="show('practise')">
-                    <a class="internal_link" href="#practice">
+                <div class="boxq navbar-item" onclick="show('practise')">
+                    <a class="internal_link navbar-link" href="#practice">
                         <p>Practice</p>
                     </a>
                 </div>
-                <div class="boxq" onclick="show('code')">
-                    <a class="internal_link" href="#code">
+                <div class="boxq navbar-item" onclick="show('code')">
+                    <a class="internal_link navbar-link" href="#code">
                         <p>Code</p>
                     </a>
                 </div>
-                <div class="boxq" onclick="show('quiz')">
-                    <a class="internal_link" href="#quiz">
+                <div class="boxq navbar-item" onclick="show('quiz')">
+                    <a class="internal_link navbar-link" href="#quiz">
                         <p>Quiz</p>
                     </a>
                 </div>
-                <div class="boxq" onclick="show('observation')">
-                    <a class="internal_link" href="#observation">
+                <div class="boxq navbar-item" onclick="show('observation')">
+                    <a class="internal_link navbar-link" href="#observation">
                         <p>Observations</p>
                     </a>
                 </div>
-                <div class="boxq" onclick="show('result')">
-                    <a class="internal_link" href="#result">
+                <div class="boxq navbar-item" onclick="show('result')">
+                    <a class="internal_link navbar-link" href="#result">
                         <p>Result</p>
                     </a>
                 </div>
-                <div class="boxq" onclick="show('references')">
-                    <a class="internal_link" href="#references">
+                <div class="boxq navbar-item" onclick="show('references')">
+                    <a class="internal_link navbar-link" href="#references">
                         <p>References</p>
                     </a>
                 </div>
             </nav>
 
         </div>
-        <div class="right">
+        <div class="right" id="right">
             <div class="exp-heading">
                 <h1>EXPERIMENT HEADING</h1>
             </div>
@@ -177,32 +173,34 @@
                         <div class="title">
                             <h2 class="heading">Procedure</h2>
                         </div>
-                        <div class="desc1">
+                        <div class="desc">
                             <ol class="desc">
-                                <p class="desc">What we are going to do</p>
-                                <li>Sub Heading 1</li>
-                                <ol class="desc" type="i">
+                                <p class="desc1">What we are going to do ,i.e. the steps involved.</p>
+                                <li class="desch">Sub Heading 1</li>
+                                <ol class="normal" type="i">
                                     <li>First Step</li>
                                     <li>Second Step</li>
                                     <li>Third Step</li>
                                     <li> Add the following image with given class name if needed</li>
                                 </ol>
-                                <img src="https://th.bing.com/th/id/OIP.GBKKqVWWO21GilGcv6MItAHaHa?w=171&h=180&c=7&r=0&o=5&pid=1.7"
-                                    alt="" class="obsv-image">
-                                <li>Sub Heading 2</li>
+                                <div class="img">
+                                    <img src="https://th.bing.com/th/id/OIP.GBKKqVWWO21GilGcv6MItAHaHa?w=171&h=180&c=7&r=0&o=5&pid=1.7"
+                                        alt="" class="obsv-image">
+                                    <div class="caption">Fig 1.1 Caption it</div>
+                                </div>
+
+
+                                <li class="desch">Sub Heading 2</li>
                                 <p class="desc">
-                                    TEnter text like this if not needed in bullet points.
+                                    Any Text can go here.
                                     <br>
-                                    After each iteration, the largest element among the unsorted elements is placed at
-                                    the end.
+                                    You can use bullets if you wish.
                                 </p>
                                 <p class="desc">In each iteration, the comparison takes place up to the last unsorted
                                     element.
                                 </p>
                                 <img src="images/logo.png" alt="" class="obsv-image">
-                                <p class="desc">The array is sorted when all the unsorted elements are placed at their
-                                    correct
-                                    positions.</p>
+                                <p class="desc">Lastly , this needs to be done.</p>
                             </ol>
                         </div>
                     </div>
@@ -214,7 +212,7 @@
                             <p class="desc">Enter an array: <br>
                                 For example if array is [1,2,3,4] <br> simply enter 1,2,3,4 <input type="text"
                                     class="inp"></p>
-                            <button class="submit">Click here</button>
+                            <button class="submit">Submit</button>
                         </div>
                         <div class="desc1">
                             <p class="desc">Here's the result</p>
@@ -234,9 +232,7 @@
                         <div class="title">
                             <h2 class="heading">Quiz</h2>
                         </div>
-                        <div class="desc">
-                            Quiz Here
-                        </div>
+                        <iframe src="./quiz.html" frameborder="0" width="100%" id="quizIframe"></iframe>
                     </div>
                     <div class="box" id="observation">
                         <div class="title">
@@ -298,6 +294,25 @@
                 show(argument);
             });
         }
+
+        var collapse = document.getElementById("collapse");
+        var navbar = document.getElementById("navbar");
+        var navbar_m = document.getElementById("navbar-m");
+        var right = document.getElementById("right");
+
+        collapse.addEventListener("click", function () {
+            if (window.innerWidth >= 800) {
+                navbar.classList.toggle("none");
+                right.classList.toggle('w-100');
+            }
+            else {
+                navbar_m.classList.toggle("none");
+            }
+
+
+        })
+
+
 
     </script>
 </body>

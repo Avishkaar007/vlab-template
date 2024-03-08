@@ -114,7 +114,10 @@ header .navigation li a {
 }
 
 .heading {
-    font-size: x-large;
+    font-size: xx-large;
+    color: black;
+    font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     padding: 1rem 0 0 1rem;
 }
 
@@ -360,16 +363,14 @@ nav .boxq a img {
 }
 
 .container>.box {
-    border: 1.5px rgba(0, 12, 12, 0.383) solid;
-    border-radius: 0.5rem;
+
     font-size: 1rem;
-    height: 80vh;
     padding: 5px 20px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     margin: 5%;
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .exp .container .box .title {
@@ -377,6 +378,17 @@ nav .boxq a img {
     margin-top: 5%;
     margin-left: 5%;
     font-weight: bold;
+
+}
+
+.normal {
+    font-size: large;
+    font-weight: 500;
+}
+
+.desch {
+    font-size: larger;
+
 }
 
 .container .box .desc {
@@ -403,28 +415,23 @@ main {
 
 .right {
     position: fixed;
+    overflow-y: scroll;
     top: 15vh;
     bottom: 0;
     right: 0;
-    width: 75%;
+    width: 70%;
     margin: 0;
+}
+
+.w-100 {
+    width: 100%;
 }
 
 #exp {
     width: 100%;
 }
 
-.cont {
-    display: flex;
-}
 
-.det {
-    display: none;
-}
-
-.tblDt {
-    opacity: 0;
-}
 
 .mth {
     background-color: rgb(0, 62, 62);
@@ -672,7 +679,7 @@ nav {
     position: static;
     font-weight: bold;
     z-index: 1;
-
+    width:15vw;
     position: relative;
     height: 85vh;
     overflow-y: scroll;
@@ -753,21 +760,7 @@ nav p {
 
 }
 
-.container>.box {
-    border: 1.5px rgba(0, 12, 12, 0.383) solid;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    padding: 5px 20px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    margin: 1% 5%;
-    overflow-y: scroll;
-    height: 65vh;
-    scrollbar-face-color: #2196f3;
-    bottom: 0;
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
-}
+
 
 .exp .container .box .title {
     margin-top: 10px;
@@ -792,15 +785,34 @@ nav p {
     width: 80vw;
 }
 
+
+.desc1 {
+    color: rgb(54, 52, 52);
+}
+
+.img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+}
+
 .obsv-image {
     height: 400px;
     width: 300px;
+    margin: 1rem;
     margin-left: 100px;
+
+}
+
+.caption {
+    font-size: small;
+    font-style: italic;
 }
 
 .submit {
-    border: 2px solid black;
-    border-radius: 10px;
+    border: 1px  solid rgb(95, 93, 93);
+    border-radius: 8px;
     padding: 5px 7px;
     font-weight: bold;
     font-size: 0.8rem;
@@ -845,37 +857,98 @@ nav p {
     }
 }
 
-#references .desc a{
-    color:black;
-    
+#references .desc a {
+    color: black;
+
     font-size: large;
     text-decoration: none;
-    
+
 }
-#references a:visited{
-    color:#285f8f;
-    
+
+#references a:visited {
+    color: #285f8f;
+
 }
 
 #navbar-m {
     display: none;
 }
 
-#collapsible {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    border: none;
-    position: sticky;
-    top:auto;
+.navbar-m {
+    --navbar-height: 64px;
+    position: fixed;
+    height: var(--navbar-height);
+    background-color: var(--navbar-bg-color);
     left: 0;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
+    right: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-item {
+    margin: 0.4em;
+    width: 100%;
+}
+
+.internal_link,
+.navbar-link {
+    color: var(--navbar-text-color);
+    text-decoration: none;
+    display: flex;
+    font-weight: 400;
+    align-items: center;
+}
+
+.internal_link:focus,
+.internal_link:hover,
+.navbar-link:focus,
+.navbar-link:hover {
+    color: var(--navbar-text-color-focus);
+}
+
+.navbar-link {
+    justify-content: center;
+    width: 100%;
+    padding: 0.4em 0.8em;
+    border-radius: 5px;
+}
+
+.navbar-link:focus,
+.navbar-link:hover {
+    color: var(--navbar-text-color-focus);
+    background-color: var(--navbar-bg-contrast);
+}
+
+.boxq {
+    background-color: var(--navbar-text-color-focus);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin-right: 0.5em;
+}
+
+/* Add your other styles here if needed */
+
+.none {
     display: none;
 }
 
+#collapse {
+    color: #444;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    font-size: 15px;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+}
+
 @media screen and (max-width:800px) {
+    
+
+
     .exp-heading {
         font-size: 0.8rem;
         text-align: center;
@@ -899,20 +972,10 @@ nav p {
         font-size: 0.7rem;
     }
 
-    .instruc,
-    .detl,
-    .detl-1,
-    .obs {
-        text-align: center;
-        font-size: 0.8rem;
-    }
+
 
     .methods {
         font-size: 0.6rem;
-    }
-
-    .left {
-        width: 100%;
     }
 
     .right {
@@ -929,18 +992,26 @@ nav p {
         flex-direction: row;
         width: 100%;
     }
+    
 
     #navbar-m {
         display: flex;
+        background-color:#285f8f;
         flex-direction: column;
+        flex-wrap: nowrap;
         height: min-content;
 
+    }
+
+    .navbar-m>div {
+        height: 20px;
+        padding: 4px;
     }
 
     nav .boxq {
         text-align: center;
         display: flex;
-        align-content:center;
+        align-content: center;
         padding: 5px;
         border: none;
         transition: 0.3s ease;
@@ -949,23 +1020,34 @@ nav p {
     nav .boxq:hover {
         background: none;
 
-        contain:content;
+        contain: content;
         scale: 1.2;
-        background-color:#2196f3;
-        box-shadow:none;
+        background-color: #2196f3;
+        box-shadow: none;
     }
 
 
     #navbar {
         display: none;
     }
-    #collapsible{
+
+    #collapsible {
         display: block;
-        width:100px;
-        height:100px;
+        width: 100px;
+        height: 100px;
     }
 
     .navigation {
         display: none;
     }
+}
+@media screen and (max-width:600px) {
+    
+    .navigation {
+        display: none;
+    }
+}
+
+#quiz iframe {
+    height: 100%;
 }
